@@ -1,7 +1,9 @@
 const db = require('../utils/database')
-const { DataTypes, BOOLEAN } = require('sequelize')
 
-const Todos = db.define('Todos', {
+const { DataTypes } = require('sequelize')
+const Users = require('./users.models')
+
+const Todos = db.define('todos', {
   id: {
     primaryKey: true,
     type: DataTypes.INTEGER,
@@ -16,13 +18,19 @@ const Todos = db.define('Todos', {
   description: {
     type: DataTypes.STRING,
   },
-  is_complete: {
-    type: BOOLEAN,
+  isComplete: {
+    type: DataTypes.BOOLEAN,
     defaultValue: false,
+    field: "is_complete"
   },
-  user_id: {
+  userId: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    field: "user_id",
+    references: {
+      model: Users,
+      key: "id"
+    }
   },
 })
 module.exports = Todos
