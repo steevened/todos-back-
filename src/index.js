@@ -3,6 +3,7 @@ const db = require('./utils/database')
 const app = express()
 const initModels = require('./models/initModels')
 const Users = require('./models/users.models')
+const Todos = require('./models/todos.models')
 
 app.use(express.json())
 
@@ -26,6 +27,8 @@ app.get('/', (req, res) => {
   })
 })
 
+//user endpoint---------------------------------------------------
+
 app.get('/users', async (req, res) => {
   try {
     //get the result from the users database
@@ -35,8 +38,6 @@ app.get('/users', async (req, res) => {
     console.log(error)
   }
 })
-
-//get a user
 
 app.get('/users/:id', async (req, res) => {
   try {
@@ -91,6 +92,63 @@ app.delete('/users/:id', async (req, res) => {
     res.status(200).json(result)
   } catch (error) {
     console.log(error)
+  }
+})
+
+//todos endpoints-------------------------------------------------------------------
+
+app.get('/todos', async (req, res) => {
+  try {
+    const result = await Todos.findAll()
+    res.status(200).json(result)
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+app.get('/todos/:id', async (req, res) => {
+  try {
+    const id = req.params.id
+    const result = await Todos.findByPk(id)
+    res.status(200).json(result)
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+app.post('/todos', async (req, res) => {
+  try {
+    const todo = req.body
+    const result = await Todos.create(todo)
+    res.status(201).json(result)
+  } catch (error) {
+    res.status(400).json(error.message)
+    console.log(error)
+  }
+})
+
+app.put('/todos/:id', async (req, res) => {
+  try {
+    const id = req.params.id
+    const field = req.body
+    const result = await Todos.update(field, {
+      where: { id },
+    })
+    res.status(200).json(result)
+  } catch (error) {
+    console.log(error.message)
+  }
+})
+
+app.delete('/todos/:id', async (req, res) => {
+  try {
+    const id = req.params.id
+    const result = Todos.destroy({
+      where: { id },
+    })
+    res.status(200).json(result)
+  } catch (error) {
+    console.log(error.message)
   }
 })
 
