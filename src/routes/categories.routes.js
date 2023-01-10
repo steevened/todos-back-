@@ -11,7 +11,7 @@ const router = Router()
 
 router.get('/categories', getAllCategories)
 router.get('/categories/:id', getCategoryById)
-router.post('/categories/:id', createCategory)
+router.post('/categories/', createCategory)
 router.put('/categories/:id', updateCategory)
 router.delete('/categories/:id', deleteCategory)
 
