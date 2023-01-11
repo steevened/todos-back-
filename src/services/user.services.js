@@ -1,5 +1,6 @@
 const users = require('../models/users.models')
 const Todos = require('../models/todos.models')
+const TodosCategories = require('../models/todos-categories.models')
 const Categories = require('../models/categories.models')
 
 class UserService {
@@ -33,10 +34,14 @@ class UserService {
           model: Todos,
           // attributes: ['title'],
           as: 'task',
-          // include: {
-          //   model: Categories,
-          //   as: 'category',
-          // },
+          include: {
+            model: TodosCategories,
+            as: 'category',
+            include: {
+              model: Categories,
+              as: 'category',
+            },
+          },
         },
       })
       return result
