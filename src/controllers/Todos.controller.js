@@ -17,6 +17,17 @@ const getTodoById = async (req, res) => {
     res.status(400).json(error.message)
   }
 }
+
+const getTodoWithCategory = async (req, res) => {
+  const { id } = req.params
+  try {
+    const result = await TodoService.getWithCategory(id)
+    res.status(200).json(result)
+  } catch (error) {
+    res.status(400).json(error.message)
+  }
+}
+
 const createTodo = async (req, res) => {
   const body = req.body
   try {
@@ -49,6 +60,7 @@ const deleteTodo = async (req, res) => {
 module.exports = {
   getAllTodos,
   getTodoById,
+  getTodoWithCategory,
   createTodo,
   updateTodo,
   deleteTodo,

@@ -1,4 +1,6 @@
 const users = require('../models/users.models')
+const Todos = require('../models/todos.models')
+const Categories = require('../models/categories.models')
 
 class UserService {
   static async getAll() {
@@ -13,6 +15,30 @@ class UserService {
   static async getById(id) {
     try {
       const result = await users.findByPk(id)
+      return result
+    } catch (error) {
+      throw error
+    }
+  }
+
+  static async getWithTodos(id) {
+    try {
+      const result = await users.findOne({
+        where: { id },
+        attributes: {
+          exclude: ['password'],
+        },
+        // attributes: ['usermane', 'email'],
+        include: {
+          model: Todos,
+          // attributes: ['title'],
+          as: 'task',
+          // include: {
+          //   model: Categories,
+          //   as: 'category',
+          // },
+        },
+      })
       return result
     } catch (error) {
       throw error

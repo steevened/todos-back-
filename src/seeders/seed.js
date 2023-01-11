@@ -27,6 +27,7 @@ const categories = [
   { name: 'hobbies' },
   { name: 'healt' },
   { name: 'personal' },
+  { name: 'sports' },
 ]
 
 const todosCategories = [

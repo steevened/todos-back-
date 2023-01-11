@@ -5,6 +5,7 @@ const {
   createUser,
   deleteUser,
   updateUser,
+  getUserWithTodos,
 } = require('../controllers/Users.controller')
 const router = Router()
 
@@ -13,6 +14,10 @@ const router = Router()
 router.get('/users', getAllUsers)
 
 router.get('/users/:id', getUserById)
+
+//get a user with their todos
+
+router.get('/users/:id/todos', getUserWithTodos)
 
 router.post('/users', createUser)
 

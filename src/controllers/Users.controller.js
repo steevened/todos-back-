@@ -19,6 +19,16 @@ const getUserById = async (req, res) => {
   }
 }
 
+const getUserWithTodos = async (req, res) => {
+  try {
+    const { id } = req.params
+    const result = await UserService.getWithTodos(id)
+    res.status(200).json(result)
+  } catch (error) {
+    res.status(400).json(error.message)
+  }
+}
+
 const createUser = async (req, res) => {
   try {
     const body = req.body
@@ -53,6 +63,7 @@ const deleteUser = async (req, res) => {
 module.exports = {
   getAllUsers,
   getUserById,
+  getUserWithTodos,
   createUser,
   updateUser,
   deleteUser,
