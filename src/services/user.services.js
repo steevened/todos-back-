@@ -53,12 +53,21 @@ class UserService {
   static async getAllUsersWithTodos() {
     try {
       const result = await users.findAll({
+        attributes: {
+          exclude: ['password'],
+        },
         include: {
           model: Todos,
           as: 'task',
+          attributes: {
+            exclude: ['userId'],
+          },
           include: {
             model: TodosCategories,
             as: 'category',
+            attributes: {
+              exclude: ['todoId', 'todo_id', 'category_id', 'categoryId'],
+            },
             include: {
               model: Categories,
               as: 'category',
