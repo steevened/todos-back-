@@ -50,6 +50,28 @@ class UserService {
     }
   }
 
+  static async getAllUsersWithTodos() {
+    try {
+      const result = await users.findAll({
+        include: {
+          model: Todos,
+          as: 'task',
+          include: {
+            model: TodosCategories,
+            as: 'category',
+            include: {
+              model: Categories,
+              as: 'category',
+            },
+          },
+        },
+      })
+      return result
+    } catch (error) {
+      throw error
+    }
+  }
+
   static async create(body) {
     try {
       const result = await users.create(body)
