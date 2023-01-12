@@ -29,14 +29,13 @@ class UserService {
         attributes: {
           exclude: ['password'],
         },
-        // attributes: ['usermane', 'email'],
         include: {
           model: Todos,
           // attributes: ['title'],
           as: 'task',
           include: {
             model: TodosCategories,
-            as: 'category',
+            as: 'categories',
             include: {
               model: Categories,
               as: 'category',
@@ -50,29 +49,13 @@ class UserService {
     }
   }
 
-  static async getAllUsersWithTodos() {
+  static async getWithCategories(id) {
     try {
-      const result = await users.findAll({
-        attributes: {
-          exclude: ['password'],
-        },
+      const result = await users.findOne({
+        where: { id },
         include: {
-          model: Todos,
-          as: 'task',
-          attributes: {
-            exclude: ['userId'],
-          },
-          include: {
-            model: TodosCategories,
-            as: 'category',
-            attributes: {
-              exclude: ['todoId', 'todo_id', 'category_id', 'categoryId'],
-            },
-            include: {
-              model: Categories,
-              as: 'category',
-            },
-          },
+          model: Categories,
+          as: 'category',
         },
       })
       return result

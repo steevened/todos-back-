@@ -15,19 +15,19 @@ const users = [
 ]
 
 const todos = [
-  { title: 'make de dinner', description: 'one per day', userId: 1 },
-  { title: 'do your homeworks', description: 'for the university', userId: 2 },
-  { title: 'give classes', description: 'on nights', userId: 3 },
+  { title: 'make de dinner', description: 'one per day', user_id: 1 },
+  { title: 'do your homeworks', description: 'for the university', user_id: 2 },
+  { title: 'give classes', description: 'on nights', user_id: 3 },
 ]
 
 const categories = [
-  { name: 'education' },
-  { name: 'home' },
-  { name: 'work' },
-  { name: 'hobbies' },
-  { name: 'healt' },
-  { name: 'personal' },
-  { name: 'sports' },
+  { name: 'education', userId: 4 },
+  { name: 'home', userId: 3 },
+  { name: 'work', userId: 2 },
+  { name: 'hobbies', userId: 2 },
+  { name: 'healt', userId: 4 },
+  { name: 'personal', userId: 3 },
+  { name: 'sports', userId: 1 },
 ]
 
 const todosCategories = [

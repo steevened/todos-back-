@@ -6,7 +6,7 @@ const {
   deleteUser,
   updateUser,
   getUserWithTodos,
-  getAllUsersWithTodos,
+  getWithCategories,
 } = require('../controllers/Users.controller')
 const router = Router()
 
@@ -20,7 +20,7 @@ router.get('/users/:id', getUserById)
 
 router.get('/users/:id/todos', getUserWithTodos)
 
-router.get('/user/todos', getAllUsersWithTodos)
+router.get('/users/:id/categories', getWithCategories)
 
 router.post('/users', createUser)
 

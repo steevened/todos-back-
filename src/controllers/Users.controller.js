@@ -29,12 +29,13 @@ const getUserWithTodos = async (req, res) => {
   }
 }
 
-const getAllUsersWithTodos = async (req, res) => {
+const getWithCategories = async (req, res) => {
+  const { id } = req.params
   try {
-    const result = await UserService.getAllUsersWithTodos()
+    const result = await UserService.getWithCategories(id)
     res.json(result)
   } catch (error) {
-    res.status(400).json(error)
+    res.status(400).json(error.message)
   }
 }
 
@@ -73,7 +74,8 @@ module.exports = {
   getAllUsers,
   getUserById,
   getUserWithTodos,
-  getAllUsersWithTodos,
+
+  getWithCategories,
   createUser,
   updateUser,
   deleteUser,

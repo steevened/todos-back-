@@ -30,7 +30,7 @@ class TodoService {
           as: 'category',
           include: {
             model: Categories,
-            as: 'category',
+            as: 'categories',
           },
         },
       })

@@ -22,9 +22,15 @@ const getTodoWithCategory = async (req, res) => {
   const { id } = req.params
   try {
     const result = await TodoService.getWithCategory(id)
-    res.status(200).json(result)
+    res.status(200).json({
+      message: 'Data sent',
+      data: result,
+    })
   } catch (error) {
-    res.status(400).json(error.message)
+    res.status(400).json({
+      error: error.message,
+      details: error.stack,
+    })
   }
 }
 
