@@ -74,7 +74,6 @@ module.exports = {
   getAllUsers,
   getUserById,
   getUserWithTodos,
-
   getWithCategories,
   createUser,
   updateUser,

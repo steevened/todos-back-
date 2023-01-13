@@ -5,8 +5,13 @@ const initModels = require('./models/initModels')
 const userRoutes = require('./routes/users.routes')
 const todoRoutes = require('./routes/todos.routes')
 const categoryRoutes = require('./routes/categories.routes')
+const authRoutes = require('./routes/auth.routes')
 
 app.use(express.json())
+
+const cors = require('cors')
+
+app.use(cors())
 
 const PORT = 8000
 
@@ -33,6 +38,7 @@ app.get('/', (req, res) => {
 app.use('/api/v1', userRoutes)
 app.use('/api/v1', todoRoutes)
 app.use('/api/v1', categoryRoutes)
+app.use('/api/v1', authRoutes)
 
 app.listen(PORT, () => {
   console.log(`server listening on port ${PORT}`)
