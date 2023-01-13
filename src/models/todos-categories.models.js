@@ -15,7 +15,7 @@ const TodosCategories = db.define(
     },
     categoryId: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       field: 'category_id',
       references: {
         model: Categories,

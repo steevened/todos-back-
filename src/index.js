@@ -18,7 +18,7 @@ const PORT = 8000
 //testing conexion with db
 
 db.authenticate()
-  .then(() => console.log(`Autorized`))
+  .then(() => console.log(`Authorized`))
   .catch((error) => console.log(error))
 
 initModels()
