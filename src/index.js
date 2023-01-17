@@ -8,6 +8,7 @@ const categoryRoutes = require('./routes/categories.routes')
 const authRoutes = require('./routes/auth.routes')
 
 app.use(express.json())
+console.log(process.env.PORT)
 
 const cors = require('cors')
 

@@ -11,7 +11,10 @@ const userLogin = async (req, res) => {
         username: response.result.usermane,
         id: response.result.id,
       }
-      const token = jwt.sign(data, 'secret world', { algorithm: 'HS512' })
+      const token = jwt.sign(data, 'secret world', {
+        algorithm: 'HS512',
+        expiresIn: '1m',
+      })
       data.token = token
       console.log(data)
       res.json(data)
