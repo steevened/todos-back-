@@ -6,15 +6,15 @@ const userRoutes = require('./routes/users.routes')
 const todoRoutes = require('./routes/todos.routes')
 const categoryRoutes = require('./routes/categories.routes')
 const authRoutes = require('./routes/auth.routes')
+require('dotenv').config()
 
 app.use(express.json())
-console.log(process.env.PORT)
 
 const cors = require('cors')
 
 app.use(cors())
 
-const PORT = 8000
+const PORT = process.env.PORT
 
 //testing conexion with db
 

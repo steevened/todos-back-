@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
 const AuthService = require('../services/auth.services')
+require('dotenv').config()
 
 const userLogin = async (req, res) => {
   const { email, password } = req.body
@@ -11,7 +12,7 @@ const userLogin = async (req, res) => {
         username: response.result.usermane,
         id: response.result.id,
       }
-      const token = jwt.sign(data, 'secret world', {
+      const token = jwt.sign(data, process.env.JWT_SECRET, {
         algorithm: 'HS512',
         expiresIn: '1m',
       })

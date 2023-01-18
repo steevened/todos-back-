@@ -5,6 +5,8 @@
 
 const jwt = require('jsonwebtoken')
 
+require('dotenv').config()
+
 const authMiddleware = (req, res, next) => {
   let { authorization: token } = req.headers
   token = token.replace('Bearer ', '')
@@ -12,7 +14,7 @@ const authMiddleware = (req, res, next) => {
   console.log(token)
   const decoded = jwt.verify(
     token,
-    'secret world',
+    process.env.JWT_SECRET,
     { algorithms: 'HS512' },
     (err, decoded) => {
       if (err) {
